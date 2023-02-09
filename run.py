@@ -15,7 +15,7 @@ class Board:
         self.name = name
         self.type = type
         self.guesses = []
-        self.bad_seeds = []    
+        self.add_place = []    
     
     def print(self):
         """
@@ -25,16 +25,13 @@ class Board:
             print(" ".join(row))
     
     def add_seeds(self):
-        x = randint(0, self.size-1)
-        y = randint(0, self.size-1)
-        self.bad_seeds.append((x, y))
-        if self.type == "player":
-            self.board[x][y] = "@"
+        for _ in range(self.num_bad_seeds):
+            add_row = randint(0, self.size-1)
+            add_col = randint(0, self.size-1)
+            self.add_place.append([add_row, add_col])        
+            self.board[add_row][add_col] = "@"
         
-
-
-
-
+   
 def new_game():
     """
     Starts a new game. Sets the board size and numbers of badd seeds, 
@@ -52,16 +49,28 @@ def new_game():
     play_name = input("Please enter your name: \n")
     print("-" * 35)
 
+    add_place = []
+    guess_place = []
     neighbor_board = Board(size, num_bad_seeds, "neighbor", type="neighbor")
     player_board = Board(size, num_bad_seeds, play_name, type="player")
     print(f"{play_name}")
+    for i <=num_bad_seeds:
+        add_row = randint(0, size-1)
+        add_col = randint(0, size-1)
+        if [add_row, add_col] not in add_place:
+            add_place.append([add_row, add_col])                
+        player_board.board[add_row][add_col] = "@"
     player_board.print()
     print("neighbor")
+    for _ in range(num_bad_seeds):
+        add_row = randint(0, size-1)
+        add_col = randint(0, size-1)
+        if [add_row, add_col] not in add_place:
+            add_place.append([add_row, add_col])
+        neighbor_board.board[add_row][add_col] = "@"   
     neighbor_board.print()
     
-    neighbor_board.add_seeds()
-
     
 
-
+    
 new_game()
