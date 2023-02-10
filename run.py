@@ -14,8 +14,8 @@ class Board:
         self.num_bad_seeds = num_bad_seeds
         self.name = name
         self.type = type
-        self.guesses = []
-        self.add_place = []    
+        self.guess_place = []
+        self.add_place = []   
     
     def print(self):
         """
@@ -25,12 +25,16 @@ class Board:
             print(" ".join(row))
     
     def add_seeds(self):
-        for _ in range(self.num_bad_seeds):
+        while len(self.add_place) < self.num_bad_seeds:
             add_row = randint(0, self.size-1)
             add_col = randint(0, self.size-1)
-            self.add_place.append([add_row, add_col])        
-            self.board[add_row][add_col] = "@"
-        
+            add_coord = [add_row, add_col]
+            if add_coord not in self.add_place:
+                self.add_place.append([add_row, add_col])
+                if self.type == "player":
+                    self.board[add_row][add_col] = "@" 
+                                  
+               
    
 def new_game():
     """
@@ -49,26 +53,16 @@ def new_game():
     play_name = input("Please enter your name: \n")
     print("-" * 35)
 
-    add_place = []
-    guess_place = []
     neighbor_board = Board(size, num_bad_seeds, "neighbor", type="neighbor")
     player_board = Board(size, num_bad_seeds, play_name, type="player")
-    print(f"{play_name}")
-    for i <=num_bad_seeds:
-        add_row = randint(0, size-1)
-        add_col = randint(0, size-1)
-        if [add_row, add_col] not in add_place:
-            add_place.append([add_row, add_col])                
-        player_board.board[add_row][add_col] = "@"
+    print(f"{play_name}") 
+    player_board.add_seeds()   
     player_board.print()
     print("neighbor")
-    for _ in range(num_bad_seeds):
-        add_row = randint(0, size-1)
-        add_col = randint(0, size-1)
-        if [add_row, add_col] not in add_place:
-            add_place.append([add_row, add_col])
-        neighbor_board.board[add_row][add_col] = "@"   
+    neighbor_board.add_seeds()     
     neighbor_board.print()
+
+    
     
     
 
