@@ -100,15 +100,12 @@ def new_game():
     player_board.print()
     print("neighbor")
     neighbor_board.add_seeds()     
-    neighbor_board.print()
-    
+    neighbor_board.print()    
 
-    neighbor_board.make_guess()
-    neighbor_board.print()
+    neighbor_board.my_guess()
+    neighbor_board.print()   
     
     
-    
-
     
 new_game()
 
