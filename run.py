@@ -31,11 +31,36 @@ class Board:
             add_coord = [add_row, add_col]
             if add_coord not in self.add_place:
                 self.add_place.append([add_row, add_col])
-                if self.type == "player":
-                    self.board[add_row][add_col] = "@" 
+                self.board[add_row][add_col] = "@" 
                                   
-               
-   
+    def make_guess(self):        
+        print("Please guess a row number:")
+        print()
+        while True:
+            try:
+                guess_row = int(input("Guess a number in 0,1,2,3,4  "))       
+                if guess_row < 5:            
+                    break        
+                elif guess_row > 4:
+                    print("Your number must be between 0 to 4.")                   
+            except ValueError:                 
+                print("You can only enter a interger number!")
+
+        print("Please guess a column number:")
+        print()
+        while True:
+            try:
+                guess_col = int(input("Guess a number in 0,1,2,3,4  "))        
+                if guess_col < 5:            
+                    break        
+                elif guess_col > 4:
+                    print("Your number must be between 0 to 4.")                   
+            except ValueError:                 
+                print("You can only enter a interger number!")
+        self.guess_place.append([guess_row, guess_col])
+        
+ 
+     
 def new_game():
     """
     Starts a new game. Sets the board size and numbers of badd seeds, 
@@ -62,7 +87,11 @@ def new_game():
     neighbor_board.add_seeds()     
     neighbor_board.print()
 
-    
+    neighbor_board.make_guess()
+    if neighbor_board.guess_place[guess_row][guess_col] == neighbor_board.add_place[add_row][add_col]:
+        neighbor_board.board[add_row, add_col] = "#"
+    print("You got it! Now I can plant good seed.") 
+
     
     
 
