@@ -100,11 +100,11 @@ def new_game():
     resets the scores and initialises the baords.
     """
     size = 5
-    num_bad_seeds = 4
+    num_bad_seeds = 3
     scores["neighbor"] = 0
     scores["player"] = 0
     print("-" * 20)
-    print("Welcom! You and your neighbor will help each other to dig out bad seeds from your garden! Isn't that exciting!")
+    print("\nWelcom! You and your neighbor will help each other to dig out bad seeds from your garden! Isn't that exciting!")
     print(f"Your garden size is {size}. \nNumber of bad seeds is {num_bad_seeds}")
     print("Top left coner is row: 0, col: 0")
     print("-" * 20)
@@ -123,7 +123,8 @@ def new_game():
     player_board.add_seeds()   
     player_board.print()       
 
-    while True: 
+    while True:
+
         neighbor_board.my_guess()   
         my_score = scores["player"]
         print(f"Your current score is: {my_score}")
@@ -136,36 +137,36 @@ def new_game():
         print(f"\n{play_name}'s garden")   
         player_board.print()   
         
-        if scores["player"] <= 3 or scores["computer"] <= 3:
-            a = input("Keep going? y or n ")
+        if scores["player"] == num_bad_seeds or scores["computer"]== num_bad_seeds:
+            break
+        
+        else:
+            a = input("Keep going? any key or n ")
             a = a.lower()
-            if a == "y":
-                continue
+            if a != "n":
+                continue           
             elif a == "n":
                 break
-        else:
-            print("Game Over!")
-            if my_score > neighbor_score:
-                print("In this round you win!")
-            elif my_score == neighbor_score:
-                print("In this round you are even!")
-            elif my_score < neighbor_score:
-                print("In this round your neighber win!")
-       
+      
+    print("Game Over!")
+    if my_score > neighbor_score:
+        print("In this round you win!")
+    elif my_score == neighbor_score:
+        print("In this round you are even!")
+    elif my_score < neighbor_score:
+        print("In this round your neighber win!")      
             
-
 
 def game_round():
     while True:
         new_game()
-        a = input("Would you like another round? y or n ")
+        a = input("Would you like another round? any key or n ")
         a = a.lower()
-        if a == "y":
+        if a != "n":
             continue
         elif a == "n":
             break
-        else:
-            print("Enter either y or n ")
+        
 
 game_round()
 
