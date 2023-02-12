@@ -16,7 +16,8 @@ class Board:
         self.type = type
         self.guess_place = []
         self.add_place = []  
-        self.rand_place = []      
+        self.rand_place = []
+        self.success_place = []      
     
     def print(self):
         """
@@ -39,7 +40,7 @@ class Board:
 
         while True:                  
             while True:
-                print("Please guess a row number:") 
+                print("\nPlease guess a row number:") 
                 try:
                     guess_row = int(input("Guess a number in 0,1,2,3,4  "))       
                     if guess_row < 5:            
@@ -68,15 +69,15 @@ class Board:
    
         guess_coord = [guess_row, guess_col]  
         self.guess_place.append(guess_coord) 
-        if guess_coord in self.add_place:       
-            self.board[guess_row][guess_col] = " Y "            
-            print("\nYou got it! Thank you neighbor! \nNow I can plant something nice.")
+        if guess_coord in self.add_place:
+            self.success_place.append(guess_coord)       
+            self.board[guess_row][guess_col] = "Y "            
+            print("\nYou got it! Now your neighbor can plant more beautiful flowers.")
             scores["player"] += 1            
         else:
-            self.board[guess_row][guess_col] = " X "
-            print("\nYou missed, but donot give up, \nkeep going!")             
+            self.board[guess_row][guess_col] = "X "
+            print("\nYou missed, don't give up, keep going!")             
 
-    
     def neighbor_rand_guess(self):
         rand_row = randint(0, self.size-1)
         rand_col = randint(0, self.size-1)
@@ -84,17 +85,15 @@ class Board:
         if rand_coord not in self.rand_place:
             self.rand_place.append([rand_row, rand_col])            
         if rand_coord in self.add_place:
-            self.board[rand_row][rand_col] = " Y " 
+            self.success_place.append(rand_coord)
+            self.board[rand_row][rand_col] = "Y "
+            print("\nYour neighbor did it! \nNow you can plant more beautiful flowers.")
+            scores["computer"] += 1 
         else:
-            self.board[rand_row][rand_col] = " X "
-
-
-
+            self.board[rand_row][rand_col] = "X "
+            "\nYour neighbor missed, but she/he will keep going!"
+  
     
-
-
-
-     
 def new_game():
     """
     Starts a new game. Sets the board size and numbers of badd seeds, 
@@ -104,36 +103,75 @@ def new_game():
     num_bad_seeds = 4
     scores["neighbor"] = 0
     scores["player"] = 0
-    print("-" * 35)
-    print("Welcom")
-    print(f"Board size is {size}. Number of badd seeds is {num_bad_seeds}")
+    print("-" * 20)
+    print("Welcom! You and your neighbor will help each other to dig out bad seeds from your garden! Isn't that exciting!")
+    print(f"Your garden size is {size}. \nNumber of bad seeds is {num_bad_seeds}")
     print("Top left coner is row: 0, col: 0")
-    print("-" * 35)
+    print("-" * 20)
     play_name = input("Please enter your name: \n")
-    print("-" * 35)
+    print("-" * 20)
 
     neighbor_board = Board(size, num_bad_seeds, "neighbor", type="neighbor")
     player_board = Board(size, num_bad_seeds, play_name, type="player")
-    print(f"{play_name}") 
-    player_board.add_seeds()   
-    player_board.print()
-    print("neighbor")
+
+    print("\nneighbor's garden")
+    print()
     neighbor_board.add_seeds()     
-    neighbor_board.print()    
+    neighbor_board.print() 
+    print(f"\n{play_name}'s garden")
+    print() 
+    player_board.add_seeds()   
+    player_board.print()       
 
-    neighbor_board.my_guess()
-    player_board.neighbor_rand_guess()
+    while True: 
+        neighbor_board.my_guess()   
+        my_score = scores["player"]
+        print(f"Your current score is: {my_score}")
+        print("\nYour neighbor's garden")
+        neighbor_board.print()      
 
-    my_score = scores["player"]
-    print(f"Your current score is: {my_score}")
-    print(f"{play_name}")   
-    player_board.print()
-    print("neighbor")
-    neighbor_board.print()   
-    
-    
-    
-new_game()
+        player_board.neighbor_rand_guess()
+        neighbor_score = scores["computer"]
+        print(f"Her/his current score is: {neighbor_score}")
+        print(f"\n{play_name}'s garden")   
+        player_board.print()   
+        
+        if scores["player"] <= 3 or scores["computer"] <= 3:
+            a = input("Keep going? y or n ")
+            a = a.lower()
+            if a == "y":
+                continue
+            elif a == "n":
+                break
+        else:
+            print("Game Over!")
+            if my_score > neighbor_score:
+                print("In this round you win!")
+            elif my_score == neighbor_score:
+                print("In this round you are even!")
+            elif my_score < neighbor_score:
+                print("In this round your neighber win!")
+       
+            
+
+
+def game_round():
+    while True:
+        new_game()
+        a = input("Would you like another round? y or n ")
+        a = a.lower()
+        if a == "y":
+            continue
+        elif a == "n":
+            break
+        else:
+            print("Enter either y or n ")
+
+game_round()
+
+
+
+
     
 
     
