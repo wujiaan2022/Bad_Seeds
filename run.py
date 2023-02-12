@@ -10,14 +10,14 @@ class Board:
     """
     def __init__(self, size, num_bad_seeds, name, type):
         self.size = size
-        self.board = [["o " for x in range(size)] for y in range(size)]
+        self.board = [[". " for x in range(size)] for y in range(size)]
         self.num_bad_seeds = num_bad_seeds
         self.name = name
         self.type = type
         self.guess_place = []
         self.add_place = []  
         self.rand_place = []
-        self.success_place = []      
+            
     
     def print(self):
         """
@@ -33,31 +33,35 @@ class Board:
             add_col = randint(0, self.size-1)
             add_coord = [add_row, add_col]
             if add_coord not in self.add_place:
-                self.add_place.append([add_row, add_col])
-                self.board[add_row][add_col] = "@ " 
+                self.add_place.append([add_row, add_col])                
+                self.board[add_row][add_col] = "! " 
+                
                                   
     def my_guess(self): 
 
-        while True:                  
+        num = self.size-1
+
+        while True:  
+
             while True:
                 print("\nPlease guess a row number:") 
                 try:
-                    guess_row = int(input("Guess a number in 0,1,2,3,4  "))       
-                    if guess_row < 5:            
+                    guess_row = int(input(f"Guess a number between 0 and {num} "))       
+                    if guess_row <= num:            
                         break        
-                    elif guess_row > 4:
-                        print("\nYour number must be between 0 to 4.")                   
+                    elif guess_row > num:
+                        print(f"\nYour number must be between and {num}.")                   
                 except ValueError:                 
                     print("\nYou can only enter a interger number!")
                     
             while True:
                 print("\nPlease guess a column number:")
                 try:
-                    guess_col = int(input("Guess a number in 0,1,2,3,4  "))        
-                    if guess_col < 5:            
+                    guess_col = int(input(f"Guess a number between 0 and {num}  "))        
+                    if guess_col <= num:            
                         break        
-                    elif guess_col > 4:
-                        print("\nYour number must be between 0 to 4.")                   
+                    elif guess_col > num:
+                        print(f"\nYour number must be between 0 and {num}.")                   
                 except ValueError:                 
                     print("\nYou can only enter a interger number!")
 
@@ -69,9 +73,8 @@ class Board:
    
         guess_coord = [guess_row, guess_col]  
         self.guess_place.append(guess_coord) 
-        if guess_coord in self.add_place:
-            self.success_place.append(guess_coord)       
-            self.board[guess_row][guess_col] = "Y "            
+        if guess_coord in self.add_place:                 
+            self.board[guess_row][guess_col] = "$ "            
             print("\nYou got it! Now your neighbor can plant more beautiful flowers.")
             scores["player"] += 1            
         else:
@@ -84,14 +87,13 @@ class Board:
         rand_coord = [rand_row, rand_col]
         if rand_coord not in self.rand_place:
             self.rand_place.append([rand_row, rand_col])            
-        if rand_coord in self.add_place:
-            self.success_place.append(rand_coord)
-            self.board[rand_row][rand_col] = "Y "
-            print("\nYour neighbor did it! \nNow you can plant more beautiful flowers.")
+        if rand_coord in self.add_place:            
+            self.board[rand_row][rand_col] = "$ "
+            print("\nYour neighbor got rid of one bad seed! \nNow you can plant more beautiful flowers.")
             scores["computer"] += 1 
         else:
             self.board[rand_row][rand_col] = "X "
-            "\nYour neighbor missed, but she/he will keep going!"
+            print("\nYour neighbor missed, but she/he will keep going!")
   
     
 def new_game():
@@ -99,8 +101,8 @@ def new_game():
     Starts a new game. Sets the board size and numbers of badd seeds, 
     resets the scores and initialises the baords.
     """
-    size = 5
-    num_bad_seeds = 3
+    size = 4
+    num_bad_seeds = 3    
     scores["neighbor"] = 0
     scores["player"] = 0
     print("-" * 20)
@@ -127,13 +129,13 @@ def new_game():
 
         neighbor_board.my_guess()   
         my_score = scores["player"]
-        print(f"Your current score is: {my_score}")
+        print(f"\nYour current score is: {my_score}")
         print("\nYour neighbor's garden")
         neighbor_board.print()      
 
         player_board.neighbor_rand_guess()
         neighbor_score = scores["computer"]
-        print(f"Her/his current score is: {neighbor_score}")
+        print(f"\nHer/his current score is: {neighbor_score}")
         print(f"\n{play_name}'s garden")   
         player_board.print()   
         
@@ -150,17 +152,17 @@ def new_game():
       
     print("Game Over!")
     if my_score > neighbor_score:
-        print("In this round you win!")
+        print("In this round you win! But he/she is not sad at all. \nIn fact, he/she will bring you a big bucket of icecream!")
     elif my_score == neighbor_score:
         print("In this round you are even!")
     elif my_score < neighbor_score:
-        print("In this round your neighber win!")      
+        print("In this round your neighber win! \nBut your garden will be prettier, so it's win_win!")      
             
 
 def game_round():
     while True:
         new_game()
-        a = input("Would you like another round? any key or n ")
+        a = input("\nWould you like another round? any key or n ")
         a = a.lower()
         if a != "n":
             continue
