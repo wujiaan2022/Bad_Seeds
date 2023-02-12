@@ -2,6 +2,7 @@ from random import randint
 
 scores = {"computer": 0, "player": 0}
 
+
 class Board:
     """
     main board setting of size, player's name, numbers of bad seeds, 
@@ -16,8 +17,7 @@ class Board:
         self.type = type
         self.guess_place = []
         self.add_place = []  
-        self.rand_place = []
-            
+        self.rand_place = []   
     
     def print(self):
         """
@@ -40,8 +40,7 @@ class Board:
             add_coord = [add_row, add_col]
             if add_coord not in self.add_place:
                 self.add_place.append([add_row, add_col])                
-                self.board[add_row][add_col] = "! " 
-                
+                self.board[add_row][add_col] = "! "                 
                                   
     def my_guess(self): 
         """
