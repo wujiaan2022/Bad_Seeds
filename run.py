@@ -28,6 +28,12 @@ class Board:
             print()
     
     def add_seeds(self):
+        """
+        Use while loop to add random and non-repeating coordinate (bad seeds) in 
+        both garden. Print a symbol ! on player side while computer side is hidden.
+        Note: in test version, both side are shown. After tested, will add 
+        "if self.type == "player":" in front of the last line(last line indent).
+        """
         while len(self.add_place) < self.num_bad_seeds:
             add_row = randint(0, self.size-1)
             add_col = randint(0, self.size-1)
@@ -38,7 +44,13 @@ class Board:
                 
                                   
     def my_guess(self): 
-
+        """
+        The outer while loop includes two sub while loop which promp player 
+        to make a guess row and col, and validate the both.
+        Then in outer loop, outside the subloops to validate the guess coordinat, 
+        if it's not already guessed, then move on to hit or miss part which is outside 
+        the outer loop. if hit, shown as $ and increment the score. If miss shown as x.
+        """
         num = self.size-1
 
         while True:  
@@ -82,11 +94,18 @@ class Board:
             print("\nYou missed, don't give up, keep going!")             
 
     def neighbor_rand_guess(self):
-        rand_row = randint(0, self.size-1)
-        rand_col = randint(0, self.size-1)
-        rand_coord = [rand_row, rand_col]
-        if rand_coord not in self.rand_place:
-            self.rand_place.append([rand_row, rand_col])            
+        """
+        Through a while loop, computer makes random non-repeating coordinate.
+        Outside the loop, if the coordinate hit, print $ and increment score.
+        Otherwise print X
+        """
+        while True:
+            rand_row = randint(0, self.size-1)
+            rand_col = randint(0, self.size-1)
+            rand_coord = [rand_row, rand_col]
+            if rand_coord not in self.rand_place:
+                self.rand_place.append([rand_row, rand_col])
+                break            
         if rand_coord in self.add_place:            
             self.board[rand_row][rand_col] = "$ "
             print("\nYour neighbor got rid of one bad seed! \nNow you can plant more beautiful flowers.")
@@ -94,12 +113,16 @@ class Board:
         else:
             self.board[rand_row][rand_col] = "X "
             print("\nYour neighbor missed, but she/he will keep going!")
-  
+
     
 def new_game():
     """
-    Starts a new game. Sets the board size and numbers of badd seeds, 
-    resets the scores and initialises the baords.
+    Starts a new game. Sets the board size and numbers of bad seeds, 
+    resets the scores and print the baords and random bad seeds.
+    Use while loop to start the game, player guesses and computer make random coord.
+    Game will only stop when either player type n when prompt, 
+    or one side's score reach the number of bad seeds in which winner will be
+    announced and this round game over.
     """
     size = 4
     num_bad_seeds = 3    
@@ -160,6 +183,10 @@ def new_game():
             
 
 def game_round():
+    """
+    Player will be asked for another round. when yes start a new game.
+    when no exit the game.
+    """
     while True:
         new_game()
         a = input("\nWould you like another round? any key or n ")
