@@ -24,8 +24,7 @@ class Board:
         print the board
         """
         for row in self.board:
-            print(" ".join(row))
-            print()
+            print(" ".join(row))            
     
     def add_seeds(self):
         """
@@ -40,7 +39,7 @@ class Board:
             add_coord = [add_row, add_col]
             if add_coord not in self.add_place:
                 self.add_place.append([add_row, add_col])                
-                self.board[add_row][add_col] = "! "                 
+                self.board[add_row][add_col] = "# "                 
                                   
     def my_guess(self): 
         """
@@ -55,7 +54,7 @@ class Board:
         while True:  
 
             while True:
-                print("\nPlease guess a row number:\n") 
+                print("\nPlease guess a row number:") 
                 try:
                     guess_row = int(input(f"Guess a number between 0 and {num}\n"))       
                     if guess_row <= num:            
@@ -66,7 +65,7 @@ class Board:
                     print("\nYou can only enter a interger number!")
                     
             while True:
-                print("\nPlease guess a column number:\n")
+                print("\nPlease guess a column number:")
                 try:
                     guess_col = int(input(f"Guess a number between 0 and {num}\n"))        
                     if guess_col <= num:            
@@ -165,7 +164,7 @@ def new_game():
             break
         
         else:
-            a = input("Keep going? any key or n\n")
+            a = input("\nKeep going? any key or n\n")
             a = a.lower()
             if a != "n":
                 continue           
