@@ -69,13 +69,12 @@ class Board:
         guess_coord = [guess_row, guess_col]  
         self.guess_place.append(guess_coord) 
         if guess_coord in self.add_place:       
-            self.board[guess_row][guess_col] = " Y "
-            print("\nYou got it! Thank you neighbor! \nNow I can plant something nice.") 
+            self.board[guess_row][guess_col] = " Y "            
+            print("\nYou got it! Thank you neighbor! \nNow I can plant something nice.")
+            scores["player"] += 1            
         else:
             self.board[guess_row][guess_col] = " X "
-            print("\nYou missed, but donot give up, \nkeep going!")
-            self.score
-        print(f"Your current score is {}")
+            print("\nYou missed, but donot give up, \nkeep going!")             
 
     
     def neighbor_rand_guess(self):
@@ -123,7 +122,10 @@ def new_game():
     neighbor_board.print()    
 
     neighbor_board.my_guess()
-    player_board.neighbor_rand_guess() 
+    player_board.neighbor_rand_guess()
+
+    my_score = scores["player"]
+    print(f"Your current score is: {my_score}")
     print(f"{play_name}")   
     player_board.print()
     print("neighbor")
