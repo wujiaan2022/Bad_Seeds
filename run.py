@@ -56,9 +56,9 @@ class Board:
         while True:  
 
             while True:
-                print("\nPlease guess a row number:") 
+                print("\nPlease guess a row number:\n") 
                 try:
-                    guess_row = int(input(f"Guess a number between 0 and {num} "))       
+                    guess_row = int(input(f"Guess a number between 0 and {num}\n"))       
                     if guess_row <= num:            
                         break        
                     elif guess_row > num:
@@ -67,9 +67,9 @@ class Board:
                     print("\nYou can only enter a interger number!")
                     
             while True:
-                print("\nPlease guess a column number:")
+                print("\nPlease guess a column number:\n")
                 try:
-                    guess_col = int(input(f"Guess a number between 0 and {num}  "))        
+                    guess_col = int(input(f"Guess a number between 0 and {num}\n"))        
                     if guess_col <= num:            
                         break        
                     elif guess_col > num:
@@ -133,7 +133,7 @@ def new_game():
     print(f"Your garden size is {size}. \nNumber of bad seeds is {num_bad_seeds}")
     print("Top left coner is row: 0, col: 0")
     print("-" * 20)
-    play_name = input("Please enter your name: \n")
+    play_name = input("Please enter your name:\n")
     print("-" * 20)
 
     neighbor_board = Board(size, num_bad_seeds, "neighbor", type="neighbor")
@@ -166,7 +166,7 @@ def new_game():
             break
         
         else:
-            a = input("Keep going? any key or n ")
+            a = input("Keep going? any key or n\n")
             a = a.lower()
             if a != "n":
                 continue           
@@ -189,7 +189,7 @@ def game_round():
     """
     while True:
         new_game()
-        a = input("\nWould you like another round? any key or n ")
+        a = input("\nWould you like another round? any key or n\n")
         a = a.lower()
         if a != "n":
             continue
