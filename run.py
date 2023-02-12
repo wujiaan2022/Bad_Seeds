@@ -150,13 +150,13 @@ def new_game():
 
         neighbor_board.my_guess()   
         my_score = scores["player"]
-        print(f"\nYour current score is: {my_score}")
+        print(f"Your current score is: {my_score}")
         print("\nYour neighbor's garden")
         neighbor_board.print()      
 
         player_board.neighbor_rand_guess()
         neighbor_score = scores["computer"]
-        print(f"\nHer/his current score is: {neighbor_score}")
+        print(f"Her/his current score is: {neighbor_score}")
         print(f"\n{play_name}'s garden")   
         player_board.print()   
         
@@ -171,7 +171,7 @@ def new_game():
             elif a == "n":
                 break
       
-    print("Game Over!")
+    print("\nGame Over!")
     if my_score > neighbor_score:
         print("In this round you win! But he/she is not sad at all. \nIn fact, he/she will bring you a big bucket of icecream!")
     elif my_score == neighbor_score:
