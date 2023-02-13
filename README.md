@@ -39,3 +39,17 @@ Here is the live version of my project.
 ## Futue Feature
 - Allow player to select board size and numbers of bad seeds.
 - Allow player position the bad seeds themselves.
+
+# Data Model 
+
+- The code use a Board class as model and has two instances to hold the Player and the computer's boards. 
+    - The Board class stores the board size, the number of bad seeds, play name and type. 
+    - Has methods to print board, creat randdom non repeating numbers for add seeds and computer guess.
+    - Has player guess method in which input will be prompt and validated, miss and hit will be marked, and score will be incremented.
+    - Has computer playing method which generates random non repeating coordinate, mark miss and hit, and add score.
+
+# Testing
+
+I have manually tested this project by doing the following:
+- Passed the code through a PEPS linter and confirmed there are no problems.
+- Given invalid inputs: strings when numbers are expected, out of bounds inputs, same coordinate twice • Tati•d in my Local terminal and Ow Coda Instinew Herein. terminal 
