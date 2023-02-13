@@ -31,15 +31,16 @@ class Board:
         Use while loop to add random and non-repeating coordinate (bad seeds) in 
         both garden. Print a symbol ! on player side while computer side is hidden.
         Note: in test version, both side are shown. After tested, will add 
-        "if self.type == "player":" in front of the last line(last line indent).
+        "if self.type == "player":"in front of the last line(last line indent).
         """
         while len(self.add_place) < self.num_bad_seeds:
             add_row = randint(0, self.size-1)
             add_col = randint(0, self.size-1)
             add_coord = [add_row, add_col]
             if add_coord not in self.add_place:
-                self.add_place.append([add_row, add_col])                
-                self.board[add_row][add_col] = "# "                 
+                self.add_place.append([add_row, add_col])
+                if self.type == "player":                
+                    self.board[add_row][add_col] = "# "                 
                                   
     def my_guess(self): 
         """
@@ -85,7 +86,7 @@ class Board:
         self.guess_place.append(guess_coord) 
         if guess_coord in self.add_place:                 
             self.board[guess_row][guess_col] = "$ "            
-            print("\nYou got it! Now your neighbor can plant more beautiful flowers.")
+            print("\nYou got it! Now your neighbor can plant flowers.")
             scores["player"] += 1            
         else:
             self.board[guess_row][guess_col] = "X "
@@ -106,7 +107,7 @@ class Board:
                 break            
         if rand_coord in self.add_place:            
             self.board[rand_row][rand_col] = "$ "
-            print("\nYour neighbor got rid of one bad seed! \nNow you can plant more beautiful flowers.")
+            print("\nYour neighbor got it! \nNow you can plant flowers.")
             scores["computer"] += 1 
         else:
             self.board[rand_row][rand_col] = "X "
