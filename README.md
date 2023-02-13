@@ -32,3 +32,10 @@ Here is the live version of my project.
     - The guess row and col must be within the size of grid.
     - Input must be numbers.
     - Play cannot guess the same spot twice.
+
+![Input Validation](./images/pp3_image_4.PNG)
+    Data maitained in class instances
+
+## Futue Feature
+- Allow player to select board size and numbers of bad seeds.
+- Allow player position the bad seeds themselves.
