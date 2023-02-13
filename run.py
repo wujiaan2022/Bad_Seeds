@@ -162,16 +162,8 @@ def new_game():
         player_board.print()   
         
         if scores["player"] == num_bad_seeds or scores["computer"]== num_bad_seeds:
-            break
-        
-        else:
-            a = input("\nKeep going? any key or n\n")
-            a = a.lower()
-            if a != "n":
-                continue           
-            elif a == "n":
-                break
-      
+            break       
+              
     print("\nGame Over!")
     if my_score > neighbor_score:
         print("In this round you win! But he/she is not sad at all. \nIn fact, he/she will bring you a big bucket of icecream!")
