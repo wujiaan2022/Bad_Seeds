@@ -78,7 +78,7 @@ class Board:
 
             guess_coord = [guess_row, guess_col]
             if guess_coord in self.guess_place:
-                print("You have already guessed that place, \nplease choose a different coordinate.")        
+                print("You have already guessed that place, please choose a different coordinate.")        
             else:
                 break
    
@@ -107,7 +107,7 @@ class Board:
                 break            
         if rand_coord in self.add_place:            
             self.board[rand_row][rand_col] = "$ "
-            print("\nYour neighbor got it! \nNow you can plant flowers.")
+            print("\nYour neighbor got it! Now you can plant flowers.")
             scores["computer"] += 1 
         else:
             self.board[rand_row][rand_col] = "X "
@@ -178,7 +178,7 @@ def new_game():
     elif my_score == neighbor_score:
         print("In this round you are even!")
     elif my_score < neighbor_score:
-        print("In this round your neighber win! \nBut your garden will be prettier, so it's win_win!")      
+        print("In this round your neighber win! But your garden will be prettier, so it's win_win!")      
             
 
 def game_round():
