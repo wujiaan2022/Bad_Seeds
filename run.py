@@ -61,7 +61,7 @@ class Board:
                     if guess_row <= num:            
                         break        
                     elif guess_row > num:
-                        print(f"\nYour number must be between and {num}.")                   
+                        print(f"\nHei, you are in my garage! \ncome back to my garden.\nYour number must be between and {num}.")                   
                 except ValueError:                 
                     print("\nYou can only enter a interger number!")
                     
@@ -72,13 +72,13 @@ class Board:
                     if guess_col <= num:            
                         break        
                     elif guess_col > num:
-                        print(f"\nYour number must be between 0 and {num}.")                   
+                        print(f"\nHei, you are in my garage! \ncome back to my garden.\nYour number must be between 0 and {num}.")                   
                 except ValueError:                 
                     print("\nYou can only enter a interger number!")
 
             guess_coord = [guess_row, guess_col]
             if guess_coord in self.guess_place:
-                print("You have already guessed that place, please choose a different coordinate.")        
+                print("You dig that place already neighbor, \nplease choose a different spot.")        
             else:
                 break
    
@@ -128,7 +128,7 @@ def new_game():
     scores["neighbor"] = 0
     scores["player"] = 0
     print("-" * 20)
-    print("\nWelcom! You and your neighbor will help each other to dig out bad seeds from your garden! Isn't that exciting!")
+    print("\nWelcom! You and your neighbor will help each other \nto dig out bad seeds from your garden! \nIsn't that exciting!")
     print(f"Your garden size is {size}. \nNumber of bad seeds is {num_bad_seeds}")
     print("Top left coner is row: 0, col: 0")
     print("-" * 20)
@@ -178,7 +178,7 @@ def new_game():
     elif my_score == neighbor_score:
         print("In this round you are even!")
     elif my_score < neighbor_score:
-        print("In this round your neighber win! But your garden will be prettier, so it's win_win!")      
+        print("In this round your neighber win! \nBut your garden will be prettier, so it's win_win!")      
             
 
 def game_round():
