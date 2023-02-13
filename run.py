@@ -119,9 +119,8 @@ def new_game():
     Starts a new game. Sets the board size and numbers of bad seeds, 
     resets the scores and print the baords and random bad seeds.
     Use while loop to start the game, player guesses and computer make random coord.
-    Game will only stop when either player type n when prompt, 
-    or one side's score reach the number of bad seeds in which winner will be
-    announced and this round game over.
+    Game will automatic stop when one side's score reach the number of bad seeds. 
+    Then winner will be announced and this round game over.
     """
     size = 4
     num_bad_seeds = 3    
