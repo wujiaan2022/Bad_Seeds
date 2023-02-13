@@ -61,7 +61,7 @@ class Board:
                     if guess_row <= num:            
                         break        
                     elif guess_row > num:
-                        print(f"\nHei, you are in my garage! \ncome back to my garden.\nYour number must be between and {num}.")                   
+                        print(f"\nHei, you are in my garage! \ncome back to my garden.\nYour number must be between 0 and {num}.")                   
                 except ValueError:                 
                     print("\nYou can only enter a interger number!")
                     
