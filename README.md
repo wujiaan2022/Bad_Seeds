@@ -65,7 +65,8 @@ I have manually tested this project by doing the following:
 
 ### Validator Test
 - PEP8
-    - No errors were returned from http://ww12.pep8online.com/
+    - No errors were returned from https://pep8ci.herokuapp.com/
+    - Note: error "173: E501 line too long (84 > 79 characters)" should not be a major problem
 
 # Deployment 
 
