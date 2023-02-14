@@ -58,7 +58,7 @@ I have manually tested this project by doing the following:
 
 ### Bugs
 #### Solved Bugs
-- I was stuck for two day in one part of validation code. it turned out a careless mistake, in which i appended the random sublist in a wrong list.
+- I was stuck for two day in one part of validation code. it turned out it was a mistake, in which i appended the random sublist in a wrong main list.
 - In one part of code, the game should have automatically stopped when one side's score equal to the number of bad seeds. But it didn't work out as i planed. So I changed the sequence of if else statment in the while loop, then it worked.
 ### Remaining Bugs
 - No bugs remaining
